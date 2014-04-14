@@ -11,7 +11,7 @@ $dirname = dirname($_SERVER['PHP_SELF']);
 require_once '_class/cms_class.php';
 //}
 //else {
-require_once '../_class/cms_class.php';
+//require_once '../_class/cms_class.php';
 //}
 
 $obj = new modernCMS();
