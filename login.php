@@ -2,28 +2,21 @@
 $notrack = 1;
 $salt = '9572186cd8f2e34eb43126434391bc77$1$mwI2qhKq$CzGzM43JmtvRWwKpbbl7..$1$CHBkox0S$nEoSlWNwnTB89.U0BRsax/3862f21b65bdb8d2223ef223a978ff6f3862f21b65bdb8d2223ef223a978ff6ff6ff879a322fe3222d8bdb56b12f2683883258566443752882';
 $msg = '';
-if($_POST['e'] == 'ae'){
-$msg = 'To use the advanced post editor, you\'ll need to log in'; 
-}
+
 include '_class/boot.php';
 if(isset($_POST['username']))
 	{
-		//login();
-		/*echo $_SERVER['HTTP_HOST'];*/
-		/*header( "Location: index.php?menu=loginfailed" );*/
 		if(isset($_POST['username']) && !isset($_POST['newUser'])) 
 		{
-			$username=$_POST['username'];
+			$username=mysql_real_escape_query($_POST['username']);
 			$queryUsers = "SELECT * FROM users WHERE username='".$username."' LIMIT 1";
 			$users = mysql_query($queryUsers) or die('Error, query failed '.$queryUsers);
 			$user=mysql_fetch_array($users);
 
 			//echo $username;
 
-			if($user['password']==crypt($_POST['password'], $salt))
+			if($user['password']==crypt($_POST['password'], $user['salt']))
 			{
-				$_SESSION['username']=$username;
-				$_SESSION['userId']=$user['id'];
 $expon = time() + 259200;
 $username = $_POST['username'];
 $rank = $user['rank'];
@@ -65,12 +58,12 @@ window.location = "'.$_POST['return'].'"
   <!-- Set the viewport width to device width for mobile -->
   <meta name="viewport" content="width=device-width" />
 
-  <title>Log in -- Pulsir</title>
+  <title>Log in to Minima</title>
   
  
 
 <style>
-@import url(http://fonts.googleapis.com/css?family=Open+Sans|Source+Sans+Pro);
+@import url(http://fonts.googleapis.com/css?family=Open+Sans);
 .btn { display: inline-block; *display: inline; *zoom: 1; padding: 4px 10px 4px; margin-bottom: 0; font-size: 13px; line-height: 18px; color: #333333; text-align: center;text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75); vertical-align: middle; background-color: #f5f5f5; background-image: -moz-linear-gradient(top, #ffffff, #e6e6e6); background-image: -ms-linear-gradient(top, #ffffff, #e6e6e6); background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#ffffff), to(#e6e6e6)); background-image: -webkit-linear-gradient(top, #ffffff, #e6e6e6); background-image: -o-linear-gradient(top, #ffffff, #e6e6e6); background-image: linear-gradient(top, #ffffff, #e6e6e6); background-repeat: repeat-x; filter: progid:dximagetransform.microsoft.gradient(startColorstr=#ffffff, endColorstr=#e6e6e6, GradientType=0); border-color: #e6e6e6 #e6e6e6 #e6e6e6; border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25); border: 1px solid #e6e6e6; -webkit-border-radius: 4px; -moz-border-radius: 4px; border-radius: 4px; -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05); -moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05); box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05); cursor: pointer; *margin-left: .3em; }
 .btn:hover, .btn:active, .btn.active, .btn.disabled, .btn[disabled] { background-color: #e6e6e6; }
 .btn-large { padding: 9px 14px; font-size: 15px; line-height: normal; -webkit-border-radius: 5px; -moz-border-radius: 5px; border-radius: 5px; }
