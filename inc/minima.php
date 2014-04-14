@@ -32,7 +32,7 @@ class minima{
 	}
 
 	function get_content() {
-		$sql = "SELECT * FROM cms_content WHERE status = 'public' ORDER BY id DESC LIMIT 0,15";
+		$sql = "SELECT * FROM posts WHERE status = 'public' ORDER BY id DESC LIMIT 0,15";
 
 		$res = mysql_query($sql) or die(mysql_error());
 
@@ -46,7 +46,7 @@ class minima{
 
 				
 				echo '<div style="clear: both;">&nbsp;</div>';
-				$body = $row['body'];
+				$body = $row['content'];
 				$abm = '</i><br><abbr title="Trimmed, click to read in full." /><a href="p.php?id=' . $row['id'] . '">(...)</a></abbr>';
 				$body = stripslashes(((strlen($body) > 200) ? substr($body,0,197) : $body));
 				$body = strip_tags($body, "<p><br></p></br><b></b><i></i>");
