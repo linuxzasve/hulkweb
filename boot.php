@@ -24,6 +24,6 @@ $obj->db = 'pulsir_hulkweb';
 
 // Spajanje na databazu
 $obj->connect();
-error_reporting(E_FATAL | E_ERROR);
-
+//error_reporting('E_FATAL' | E_ERROR);
+error_reporting(E_ALL);
 ?>

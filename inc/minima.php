@@ -60,7 +60,67 @@ class minima{
 		}
 
 	}
+function read_content($id = ''){
+$id = mysql_real_escape_string($id);
+$sql = "SELECT * FROM posts WHERE id = '$id'";
+
+$res = mysql_query($sql) or die(mysql_error());
+
+if(mysql_num_rows($res) != 0){
+ while($row = mysql_fetch_assoc($res)){
+echo '<div class="post">';
+echo '<div class="title">';
+echo $row['title'];
+echo '</div>';
+echo '<div class="author">'.$this->get_user_realname($row['author']).'</div>';
+echo '<div class="content">'.$row['content'].'</div>';
+echo '</div>';
+}
+}
+else {
+//die($this->errors('404'));
+}
+}
+
+function errors($id = ''){
+if($id == 404){
+echo 'Nothing here.';
+}
+}
+
+function get_user_realname($id = ''){
+if($id != ''){
+$id = mysql_real_escape_string($id);
+$sql = "SELECT * FROM users WHERE id = $id";
+}
+else {
+$this->errors(1001);
+// da se ne kosi s http kodovima, koristim error kodove za minimu koji kreću od 1000. 1001 je prvi i označava nedeklariranu obveznu vrijednost.
+}
+$res = mysql_query($sql) or die(mysql_error());
+
+if(mysql_num_rows($res) != 0){
+while($row = mysql_fetch_assoc($res)){
+echo $row['realname'];
+}
+}
 
 }
+
+function get_slides(){
+$sql = "SELECT * FROM slides WHERE status = 'public'";
+$res = mysql_query($sql) or die(mysql_error());
+
+if(mysql_num_rows($res) != 0){
+while ($row = mysql_fetch_assoc($res)){
+echo '<div class="slide" id="slide'.$row['id'].'" style="background-image: url(\''.$row['picture'].'\');">'.$row['text'].'</div>';
+}
+}
+else{
+$this->errors(404);
+}
+}
+
+} // završava class
 
 ?>
