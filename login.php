@@ -3,12 +3,12 @@ $notrack = 1;
 $salt = '9572186cd8f2e34eb43126434391bc77$1$mwI2qhKq$CzGzM43JmtvRWwKpbbl7..$1$CHBkox0S$nEoSlWNwnTB89.U0BRsax/3862f21b65bdb8d2223ef223a978ff6f3862f21b65bdb8d2223ef223a978ff6ff6ff879a322fe3222d8bdb56b12f2683883258566443752882';
 $msg = '';
 
-include '_class/boot.php';
+include 'boot.php';
 if(isset($_POST['username']))
 	{
 		if(isset($_POST['username']) && !isset($_POST['newUser'])) 
 		{
-			$username=mysql_real_escape_query($_POST['username']);
+			$username=$_POST['username'];
 			$queryUsers = "SELECT * FROM users WHERE username='".$username."' LIMIT 1";
 			$users = mysql_query($queryUsers) or die('Error, query failed '.$queryUsers);
 			$user=mysql_fetch_array($users);
@@ -30,6 +30,21 @@ $msg = '<script type="text/javascript">
 window.location = "'.$_POST['return'].'"
 
 </script>';			}
+elseif($user['password']==crypt($_POST['password'], $salt)){
+$expon = time() + 259200;
+$username = $_POST['username'];
+$rank = $user['rank'];
+$enccookie=crypt($username.$expon.$rank, $salt);
+setcookie('muser', $username, time() + (259200 * 7));
+setcookie('msession', $enccookie, time()+ (259200 * 7));
+setcookie('mgroup', $group, time()+ (259200 * 7));
+setcookie('expon',$expon,time()+(259200*7));
+$msg = '<script type="text/javascript">
+
+window.location = "'.$_POST['return'].'"
+
+</script>';  
+}
 			else
 			{
                                 sleep(3);
@@ -39,7 +54,8 @@ window.location = "'.$_POST['return'].'"
 		else
 		{
                         sleep(3);
-			$msg = '<div class="alert-box alert">That doesn\'t match. To prevent possible brute forcing, pages will load slower for you.</div>';
+		
+	$msg = '<div class="alert-box alert">That doesn\'t match. To prevent possible brute forcing, pages will load slower for you.</div>';
 		}
 		}
 ?>

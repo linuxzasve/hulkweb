@@ -3,7 +3,7 @@
 
 
 if($notrack !== 1) {
-	include 'var/cookie_consent.php';
+	//include 'var/cookie_consent.php';
 	if(!$_COOKIE['msessionid']){
 		$arr = str_split('ABCDEFGHIJKLMNOPRSTUVZQYabcdefghijklmnoprstuvzqy1234567890');
 		shuffle($arr);
@@ -41,7 +41,7 @@ class minima{
 
 
 
-				echo '<div class="post"><div class="post-title"><h3><a href="p.php?id=' . $row['id'] , '">'  . preg_replace("/</", "&lt;", stripslashes($row['title'])) .  '</a></h3></div><div class="featured-image"><img src=".$row['featured'].'" />';
+				echo '<div class="post"><div class="post-title"><h3><a href="p.php?id=' . $row['id'] . '">'  . preg_replace("/</", "&lt;", stripslashes($row['title'])) .  '</a></h3></div><div class="featured-image"><img src="'.$row['featured'].'" />';
 
 
 				

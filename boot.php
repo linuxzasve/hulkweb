@@ -8,13 +8,13 @@ $dirname = dirname($_SERVER['PHP_SELF']);
 //za subfoldere bi isto trebalo ../ includeanje, pa moramo riješiti taj problem
 
 //if($dirname = '/'){
-require_once '_class/cms_class.php';
+require_once 'inc/minima.php';
 //}
 //else {
 //require_once '../_class/cms_class.php';
 //}
 
-$obj = new modernCMS();
+$obj = new minima();
 
 // Postavlja vezu s databazom - varijable veze
 $obj->host = 'localhost';
