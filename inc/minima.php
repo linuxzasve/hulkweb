@@ -9,7 +9,7 @@ if($notrack !== 1) {
 		shuffle($arr);
 		$arr = array_slice($arr, 0, rand(3, 58));
 		$r = implode('', $arr);
-		setcookie('pllsessionid', crypt($r), time()+7200);
+		setcookie('msessionid', crypt($r), time()+7200);
 	}
 
 	
