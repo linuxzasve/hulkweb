@@ -101,3 +101,23 @@ CREATE TABLE IF NOT EXISTS `users` (
 INSERT INTO `users` (`id`, `username`, `password`, `salt`, `realname`, `rank`, `email`) VALUES
 (1, 'iweb', '$2a$12$W50Mz3HxplcbBjVyeknNBOsPoFOYUR8Kn2ioLvxkiw.QIxKoaTyxe', '$2a$12$W50Mz3HxplcbBjVyeknNBQwPfRao8qMHFNYfomXh', 'Mario Borna Mjertan', 'superadmin', 'iweb@plsr.tk');
 
+
+--
+-- Table structure for table `settings`
+--
+
+CREATE TABLE IF NOT EXISTS `settings` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(140) NOT NULL,
+  `value` varchar(140) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+
+--
+-- Dumping data for table `settings`
+--
+
+INSERT INTO `settings` (`id`, `name`, `value`) VALUES
+(1, 'sitename', 'HULK'),
+(2, 'activetheme', 'hulkweb2014'),
+(3, 'hulkweb2014_theme_path', 'themes/hulkweb2014');

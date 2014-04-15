@@ -250,7 +250,24 @@ class minima{
 				return 'prije '.floor(($dif/(60*60*24*30*12))).' godina'; // valjda neće imati istu stranicu idućih 20 godina
 			}
 		}
-} 
+	} 
+
+
+	function get_settings_value($setting) { // ova funkcija se koristi za dobivanje postavki iz tablice settings, tipa aktivne teme ili imena stranice
+		$setting = mysql_real_escape_string($setting);
+		$sql = "SELECT * FROM settings WHERE name = '$setting'";
+
+		$res = mysql_query($sql) or die(mysql_error());
+
+		if(mysql_num_rows($res) != 0){
+			while($row = mysql_fetch_assoc($res)){
+				return $row['value'];
+			}
+		}
+		else{
+			$this->errors(1404); // interni 404 error :D wow such innovate
+		}
+	}
 
 
 } // završava class
