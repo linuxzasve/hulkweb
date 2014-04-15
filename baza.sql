@@ -30,6 +30,7 @@ CREATE TABLE IF NOT EXISTS `posts` (
   `cucss` longtext COLLATE utf8_slovenian_ci NOT NULL,
   `cujs` longtext COLLATE utf8_slovenian_ci NOT NULL,
   `featured` varchar(140) COLLATE utf8_slovenian_ci NOT NULL,
+  `timestamp` int(11) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_slovenian_ci AUTO_INCREMENT=2 ;
 
