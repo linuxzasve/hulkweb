@@ -1,4 +1,4 @@
 <?php
 include 'boot.php';
-$obj->get_content();
+$obj->get_content('hulknews');
 ?>

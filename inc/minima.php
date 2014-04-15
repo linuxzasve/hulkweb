@@ -31,9 +31,13 @@ class minima{
 		mysql_select_db($this->db, $con) or die(mysql_error());
 	}
 
-	function get_content() {
-		$sql = "SELECT * FROM posts WHERE status = 'public' ORDER BY id DESC LIMIT 0,15";
-
+	function get_content($type = '') {
+		if($type == ''){
+			$sql = "SELECT * FROM posts WHERE status = 'public' ORDER BY id DESC LIMIT 0,15";
+		}
+		else{
+			$sql = "SELECT * FROM posts WHERE status = 'public' AND type = '$type' ORDER BY id DESC LIMIT 0,15";
+		}
 		$res = mysql_query($sql) or die(mysql_error());
 
 		if(mysql_num_rows($res) !=0){
